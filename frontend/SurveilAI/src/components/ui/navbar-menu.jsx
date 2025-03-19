@@ -45,8 +45,7 @@ export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6"
-    >
+      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 hover:bg-gray-200 dark:hover:bg-gray-700">
       {children}
     </nav>
   );
@@ -56,7 +55,7 @@ export const HoveredLink = ({ to, children, ...rest }) => {
   return (
     <Link
       to={to}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black"
+      className="text-neutral-700 dark:text-neutral-200"
       {...rest}
     >
       {children}
@@ -68,7 +67,7 @@ export default function Navbar() {
   const [active, setActive] = useState(null);
 
   return (
-    <div className="fixed top-0 left-0 w-full flex justify-center py-4  dark:bg-gray-900 z-50 shadow-lg">
+    <div className="fixed top-0 left-0 w-full flex justify-center py-4 z-50 shadow-lg">
       <Menu setActive={setActive}>
         <MenuItem setActive={setActive} active={active} item="Home">
           <HoveredLink to="/">Home Page</HoveredLink>
@@ -76,11 +75,11 @@ export default function Navbar() {
         <MenuItem setActive={setActive} active={active} item="Detect">
           <HoveredLink to="/surveilai">Start monitoring !</HoveredLink>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Feedback">
-          <HoveredLink to="/feedback">Review</HoveredLink>
-        </MenuItem>
         <MenuItem setActive={setActive} active={active} item="About">
           <HoveredLink to="/contact">About </HoveredLink>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Feedback">
+          <HoveredLink to="/feedback">Review</HoveredLink>
         </MenuItem>
       </Menu>
     </div>
