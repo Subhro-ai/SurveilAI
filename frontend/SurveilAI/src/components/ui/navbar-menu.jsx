@@ -54,18 +54,18 @@ export const Menu = ({ setActive, children }) => {
   );
 };
 
-export const HoveredLink = ({ children, ...rest }) => {
+export const HoveredLink = ({ to, children, ...rest }) => {
   return (
     <Link
-      {...rest}
+      to={to}
       className="text-neutral-700 dark:text-neutral-200 hover:text-black"
+      {...rest}
     >
       {children}
     </Link>
   );
 };
 
-// 🌟 Default Navbar Function
 export default function Navbar() {
   const [active, setActive] = useState(null);
 
