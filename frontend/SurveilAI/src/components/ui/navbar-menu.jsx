@@ -33,9 +33,7 @@ export const MenuItem = ({ setActive, active, item, children }) => {
             layoutId="active"
             className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
           >
-            <motion.div layout className="w-max h-full p-4">
-              {children}
-            </motion.div>
+            <motion.div layout className="w-max h-full p-4">{children}</motion.div>
           </motion.div>
         </motion.div>
       )}
@@ -70,13 +68,13 @@ export default function Navbar() {
   const [active, setActive] = useState(null);
 
   return (
-    <div className="w-full flex justify-center py-4 bg-gray-100 dark:bg-gray-900">
+    <div className="fixed top-0 left-0 w-full flex justify-center py-4 bg-gray-100 dark:bg-gray-900 z-50 shadow-lg">
       <Menu setActive={setActive}>
         <MenuItem setActive={setActive} active={active} item="Home">
           <HoveredLink to="/">Go to Home</HoveredLink>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="About">
-          <HoveredLink to="/about">About Us</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="Use Us">
+          <HoveredLink to="/surveilai">Use Us</HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Services">
           <HoveredLink to="/services">Our Services</HoveredLink>
