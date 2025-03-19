@@ -94,24 +94,7 @@ const Navbar = () => {
     }
   }, []);
 
-  return (
-    <div className="fixed top-0 left-0 w-full z-50 flex justify-center py-4">
-      <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Log In">
-          <HoveredLink to="/login">Tap to log in</HoveredLink>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Detect">
-          <HoveredLink to="/surveilai">Start monitoring !</HoveredLink>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Feedback">
-          <HoveredLink to="/feedback">Review</HoveredLink>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Contact">
-          <HoveredLink to="/contact">Contact Us</HoveredLink>
-        </MenuItem>
-      </Menu>
-    </div>
-  );
+ 
 };
 
 // WavyBackground Component
@@ -257,8 +240,8 @@ const ExampleUsage = () => {
     >
       <div className="text-center">
         <h1 className="text-6xl font-bold text-white mb-4">SurveilAI</h1>
-        <p className="text-xl text-gray-300 mb-6">Detecting threats before they happen</p>
-        <p className="text-lg text-gray-300 max-w-md mx-auto mb-6">
+        <p className="text-xl text-white mb-6">Detecting threats before they happen</p>
+        <p className="text-lg text-white max-w-[576px] mx-auto mb-6">
           Advanced AI-powered surveillance system that identifies and alerts you to potential 
           violence or threats in real-time. Protecting what matters most with cutting-edge
           threat detection technology.

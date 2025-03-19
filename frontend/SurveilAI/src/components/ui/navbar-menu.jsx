@@ -68,10 +68,10 @@ export default function Navbar() {
   const [active, setActive] = useState(null);
 
   return (
-    <div className="fixed top-0 left-0 w-full flex justify-center py-4 bg-gray-100 dark:bg-gray-900 z-50 shadow-lg">
+    <div className="fixed top-0 left-0 w-full flex justify-center py-4  dark:bg-gray-900 z-50 shadow-lg">
       <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Log In">
-          <HoveredLink to="/login">Tap to log in</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="Home">
+          <HoveredLink to="/">Home Page</HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Detect">
           <HoveredLink to="/surveilai">Start monitoring !</HoveredLink>
@@ -79,8 +79,8 @@ export default function Navbar() {
         <MenuItem setActive={setActive} active={active} item="Feedback">
           <HoveredLink to="/feedback">Review</HoveredLink>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Contact">
-          <HoveredLink to="/contact">Contact Us</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="About">
+          <HoveredLink to="/contact">About </HoveredLink>
         </MenuItem>
       </Menu>
     </div>
