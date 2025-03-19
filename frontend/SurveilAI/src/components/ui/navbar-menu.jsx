@@ -73,10 +73,10 @@ export default function Navbar() {
     <div className="w-full flex justify-center py-4 bg-gray-100 dark:bg-gray-900">
       <Menu setActive={setActive}>
         <MenuItem setActive={setActive} active={active} item="Home">
-          <HoveredLink to="/">Go to Home</HoveredLink>
+          <HoveredLink to="/">Log In</HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="About">
-          <HoveredLink to="/about">About Us</HoveredLink>
+          <HoveredLink to="/about"></HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Services">
           <HoveredLink to="/services">Our Services</HoveredLink>
