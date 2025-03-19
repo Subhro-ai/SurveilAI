@@ -1,4 +1,5 @@
-"use client";
+
+import { useNavigate } from "react-router-dom";"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { createNoise3D } from "simplex-noise";
@@ -96,14 +97,14 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex justify-center py-4">
       <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Home">
-          <HoveredLink to="/">Go to Home</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="Log In">
+          <HoveredLink to="/login">Tap to log in</HoveredLink>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="About">
-          <HoveredLink to="/about">About Us</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="Detect">
+          <HoveredLink to="/surveilai">Start monitoring !</HoveredLink>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <HoveredLink to="/services">Our Services</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="Feedback">
+          <HoveredLink to="/feedback">Review</HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Contact">
           <HoveredLink to="/contact">Contact Us</HoveredLink>
@@ -241,8 +242,9 @@ export const WavyBackground = ({
   );
 };
 
-// Example Usage
 const ExampleUsage = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   return (
     <WavyBackground
       colors={["#38bdf8", "#818cf8", "#c084fc", "#e879f9", "#22d3ee"]}
@@ -251,7 +253,7 @@ const ExampleUsage = () => {
       blur={10}
       speed="fast"
       waveOpacity={0.5}
-      containerClassName="bg-black" // Added black background to container
+      containerClassName="bg-black"
     >
       <div className="text-center">
         <h1 className="text-6xl font-bold text-white mb-4">SurveilAI</h1>
@@ -261,11 +263,12 @@ const ExampleUsage = () => {
           violence or threats in real-time. Protecting what matters most with cutting-edge
           threat detection technology.
         </p>
-        <button className="mt-4 px-8 py-3 text-white border border-white rounded-full bg-transparent backdrop-blur-md">
-          Learn More
+        <button 
+          className="mt-4 px-8 py-3 text-white border border-white rounded-full bg-transparent backdrop-blur-md"
+          onClick={() => navigate("/surveilai")} // Navigate to /surveilai
+        >
+          Start Monitoring!
         </button>
-
-         
       </div>
     </WavyBackground>
   );
