@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 const ThreatHistoryTable = () => {
@@ -12,15 +13,23 @@ const ThreatHistoryTable = () => {
     document.body.style.overflowX = "hidden";
 
     const fetchThreats = async () => {
-      const sampleData = [
-        { id: 1, timestamp: '2025-03-20 14:32:45', threatType: 'Unauthorized Access', imageLink: '#' },
-        { id: 2, timestamp: '2025-03-20 13:15:22', threatType: 'Suspicious Activity', imageLink: '#' },
-        { id: 3, timestamp: '2025-03-20 11:47:03', threatType: 'Weapon Detected', imageLink: '#' },
-        { id: 4, timestamp: '2025-03-20 09:22:18', threatType: 'Unauthorized Access', imageLink: '#' },
-        { id: 5, timestamp: '2025-03-19 23:41:56', threatType: 'Suspicious Activity', imageLink: '#' },
-      ];
-      setThreats(sampleData);
-      setLoading(false);
+      // const sampleData = [
+      //   { id: 1, timestamp: '2025-03-20 14:32:45', threatType: 'Unauthorized Access', imageLink: '#' },
+      //   { id: 2, timestamp: '2025-03-20 13:15:22', threatType: 'Suspicious Activity', imageLink: '#' },
+      //   { id: 3, timestamp: '2025-03-20 11:47:03', threatType: 'Weapon Detected', imageLink: '#' },
+      //   { id: 4, timestamp: '2025-03-20 09:22:18', threatType: 'Unauthorized Access', imageLink: '#' },
+      //   { id: 5, timestamp: '2025-03-19 23:41:56', threatType: 'Suspicious Activity', imageLink: '#' },
+      // ];
+      try {
+        const response = await axios.get("http://192.168.57.214:8000/history")
+        setThreats(response.data.history);
+        // console.log(response.data)
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching prediction:", error);
+      }
+    
+   
     };
     
     fetchThreats();
@@ -61,10 +70,10 @@ const ThreatHistoryTable = () => {
                 <tr key={threat.id} className={`${index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'} hover:bg-gray-700 transition-all`}>
                   <td className="px-8 py-8 border-b border-gray-700">{threat.timestamp}</td>
                   <td className="px-8 py-8 border-b border-gray-700">
-                    <span className="px-4 py-3 rounded bg-gray-700 text-gray-300 text-m">{threat.threatType}</span>
+                    <span className="px-4 py-3 rounded bg-gray-700 text-gray-300 text-m">{threat.threat_type}</span>
                   </td>
                   <td className="px-8 py-8 border-b border-gray-700">
-                    <a href={threat.imageLink} className="text-blue-400 hover:underline text-lg">View Image</a>
+                    <a href={threat.image_link} className="text-blue-400 hover:underline text-lg">View Image</a>
                   </td>
                 </tr>
               ))}
