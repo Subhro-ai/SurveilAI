@@ -35,30 +35,36 @@ const ThreatHistoryTable = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center pt-20 pb-10 relative">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 bg-[url('/path/to/your/pattern.svg')] opacity-10"></div>
+    <div className="relative min-h-screen text-white flex flex-col items-center pt-20 pb-10 overflow-hidden">
+      {/* Background with Parallax Effect */}
+      <div className="fixed inset-0 w-full h-full bg-black overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <div className="parallax absolute top-20 left-20 w-full h-full rounded-full bg-purple-700 blur-3xl"></div>
+          <div className="parallax absolute bottom-20 right-40 w-80 h-80 rounded-full bg-purple-500 blur-3xl"></div>
+          <div className="parallax absolute top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900 blur-3xl"></div>
+        </div>
+      </div>
 
-      <div className="w-full max-w-5xl px-4 relative z-10">
-        <h2 className="text-2xl font-semibold text-gray-200 text-center mb-6">Threat History</h2>
+      <div className="w-full max-w-6xl px-4 relative z-10">
+        <h2 className="text-3xl font-bold text-gray-200 text-center mb-8">Threat History</h2>
         <div className="overflow-x-auto rounded-lg border border-gray-700 shadow-lg">
-          <table className="w-full border-collapse text-sm">
+          <table className="w-full border-collapse text-base">
             <thead>
               <tr className="bg-gray-800 text-gray-300 text-left">
-                <th className="px-6 py-3 border-b border-gray-700">Timestamp</th>
-                <th className="px-6 py-3 border-b border-gray-700">Threat Type</th>
-                <th className="px-6 py-3 border-b border-gray-700">Image</th>
+                <th className="px-8 py-8 border-b border-gray-700 text-center text-lg">Timestamp</th>
+                <th className="px-8 py-8 border-b border-gray-700 text-center text-lg">Threat Type</th>
+                <th className="px-8 py-8 border-b border-gray-700 text-center text-lg">Image</th>
               </tr>
             </thead>
             <tbody>
               {threats.map((threat, index) => (
                 <tr key={threat.id} className={`${index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'} hover:bg-gray-700 transition-all`}>
-                  <td className="px-6 py-3 border-b border-gray-700">{threat.timestamp}</td>
-                  <td className="px-6 py-3 border-b border-gray-700">
-                    <span className="px-3 py-1 rounded bg-gray-700 text-gray-300 text-xs">{threat.threatType}</span>
+                  <td className="px-8 py-8 border-b border-gray-700">{threat.timestamp}</td>
+                  <td className="px-8 py-8 border-b border-gray-700">
+                    <span className="px-4 py-3 rounded bg-gray-700 text-gray-300 text-m">{threat.threatType}</span>
                   </td>
-                  <td className="px-6 py-3 border-b border-gray-700">
-                    <a href={threat.imageLink} className="text-blue-400 hover:underline">View Image</a>
+                  <td className="px-8 py-8 border-b border-gray-700">
+                    <a href={threat.imageLink} className="text-blue-400 hover:underline text-lg">View Image</a>
                   </td>
                 </tr>
               ))}
