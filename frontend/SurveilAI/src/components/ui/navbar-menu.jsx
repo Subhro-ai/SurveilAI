@@ -6,27 +6,24 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   const [active, setActive] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isInRange, setIsInRange] = useState(false);
 
-  const RANGE = 250; // Change this to increase/decrease the sensitivity range
+  const RANGE = 200; // Change this to increase/decrease the detection range
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
-      const centerX = window.innerWidth / 2;
-      const centerY = 0; // Navbar starts at the top
+      const navCenterX = window.innerWidth / 2;
+      const navCenterY = 50; // Adjusted height of the navbar
 
       const distance = Math.sqrt(
-        Math.pow(clientX - centerX, 2) + Math.pow(clientY - centerY, 2)
+        Math.pow(clientX - navCenterX, 2) + Math.pow(clientY - navCenterY, 2)
       );
 
       if (distance < RANGE) {
-        setIsInRange(true);
-        const moveX = (clientX - centerX) * 0.1; // Moves toward cursor
-        const moveY = (clientY - centerY) * 0.1; // Moves toward cursor
+        const moveX = (clientX - navCenterX) * 0.1; // Moves toward cursor
+        const moveY = (clientY - navCenterY) * 0.1; // Moves toward cursor
         setPosition({ x: moveX, y: moveY });
       } else {
-        setIsInRange(false);
         setPosition({ x: 0, y: 0 }); // Reset to original position
       }
     };
@@ -36,12 +33,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-full flex justify-center py-4 z-50 shadow-lg"
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 100, damping: 15 }}
-    >
-      <nav
+    <div className="fixed top-0 left-0 w-full flex justify-center py-4 z-50 ">
+      <motion.nav
+        animate={{ x: position.x, y: position.y }}
+        transition={{ type: "spring", stiffness: 100, damping: 15 }}
         onMouseLeave={() => setActive(null)}
         className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 hover:bg-gray-200 dark:hover:bg-gray-700"
       >
@@ -57,8 +52,8 @@ export default function Navbar() {
         <MenuItem setActive={setActive} active={active} item="Feedback">
           <HoveredLink to="/feedback">Review</HoveredLink>
         </MenuItem>
-      </nav>
-    </motion.div>
+      </motion.nav>
+    </div>
   );
 }
 
