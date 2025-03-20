@@ -9,13 +9,15 @@ import concurrent.futures
 from model import Model
 import sqlite3
 from twilio_service import send_alert
+from fastapi.staticfiles import StaticFiles
+import os
 
 # --------------------------------------
 # 📚 Constants
 # --------------------------------------
 DB_PATH = "threat_history.db"
 BUZZER_API_URL = "http://192.168.57.103/buzz?buzz=on"
-
+IMAGE_SAVE_PATH = "./images/"
 # Threat Classification Labels
 threat_labels = {
     "fight on a street",
@@ -58,6 +60,10 @@ last_alert_time = 0
 # Executors for Concurrent Tasks
 process_executor = concurrent.futures.ProcessPoolExecutor(max_workers=3)
 thread_executor = concurrent.futures.ThreadPoolExecutor(max_workers=3)
+os.makedirs(IMAGE_SAVE_PATH, exist_ok=True)
+app.mount("/images", StaticFiles(directory=IMAGE_SAVE_PATH), name="images")
+
+
 
 # --------------------------------------
 # 🗂️ Initialize SQLite Database
@@ -192,8 +198,10 @@ async def maybe_send_alert(prediction):
             await loop.run_in_executor(thread_executor, send_alert, label, confidence)
             print("✅ SMS Sent!")
 
-            # Save threat to history
-            await loop.run_in_executor(thread_executor, save_to_history_sync, label)
+            # Save threat to history with frame
+            if frame_buffer is not None:
+                await loop.run_in_executor(thread_executor, save_to_history_sync, label, frame_buffer)
+                print("✅ Threat and frame saved to history!")
 
             last_alert_label = label
             last_alert_time = current_time
@@ -221,16 +229,17 @@ def trigger_buzzer_sync():
 # --------------------------------------
 # 📝 Save Threats to History
 # --------------------------------------
-def save_to_history_sync(threat_type, image_link=None):
+def save_to_history_sync(threat_type, frame):
     """ Synchronous function to save threat to the database """
     try:
+        image_path = save_frame(frame, threat_type)
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         cursor.execute(
             "INSERT INTO history (timestamp, threat_type, image_link) VALUES (?, ?, ?)",
-            (timestamp, threat_type, image_link),
+            (timestamp, threat_type, image_path),
         )
         conn.commit()
         conn.close()
@@ -265,6 +274,18 @@ def get_history():
     except Exception as e:
         print(f"❌ Error fetching history: {e}")
         return JSONResponse(content={"error": "Failed to fetch history"}, status_code=500)
+
+def save_frame(frame, label):
+    """ Save frame as an image to disk """
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"{label.replace(' ', '_')}_{timestamp}.jpg"
+    filepath = os.path.join(IMAGE_SAVE_PATH, filename)
+    
+    # Save frame as image
+    cv2.imwrite(filepath, frame)
+    print(f"📸 Frame saved: {filepath}")
+    
+    return filepath
 
 # --------------------------------------
 # 🧹 Cleanup on Shutdown
