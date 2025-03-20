@@ -6,6 +6,7 @@ import Camera from './components/ui/camera'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AboutPage from './components/ui/aboutpage'
 import FeedbackForm from './components/ui/feedback'
+import ThreatHistoryTable from './components/ui/threathistory'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/surveilai" element={<BackgroundBeams />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/feedback" element={<FeedbackForm />} />
+          <Route path="/threathistory" element={<ThreatHistoryTable />} />
           
         </Routes>
       </BrowserRouter>
