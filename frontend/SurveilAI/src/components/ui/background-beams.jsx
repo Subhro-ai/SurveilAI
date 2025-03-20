@@ -62,13 +62,15 @@ export const BackgroundBeams = React.memo(({
   return (
     <div
       className={cn(
-        "absolute inset-0 flex h-full w-full items-center justify-center bg-black [mask-repeat:no-repeat] [mask-size:40px]",
+        "absolute inset-0 flex h-full w-full items-center justify-center bg-black [mask-repeat:no-repeat] [mask-size:40px] z-[-2]",
         className
       )}
     >
-      <Camera/>
+      {/* Ensuring Camera stays above the SVG */}
+      <Camera className="relative z-[1]" />
+
       <svg
-        className="pointer-events-none absolute z-0 h-full w-full"
+        className="pointer-events-none absolute z-[-1] h-full w-full"
         width="100%"
         height="100%"
         viewBox="0 0 696 316"
@@ -81,19 +83,19 @@ export const BackgroundBeams = React.memo(({
           strokeOpacity="0.05"
           strokeWidth="0.5"
         ></path>
-  
+
         {paths.map((path, index) => (
           <motion.path
-            key={`path-` + index}
+            key={`path-${index}`}
             d={path}
             stroke={`url(#linearGradient-${index})`}
             strokeOpacity="0.4"
             strokeWidth="0.5"
           ></motion.path>
         ))}
-  
+
         <defs>
-          {paths.map((path, index) => (
+          {paths.map((_, index) => (
             <motion.linearGradient
               id={`linearGradient-${index}`}
               key={`gradient-${index}`}
@@ -122,7 +124,7 @@ export const BackgroundBeams = React.memo(({
               <stop offset="100%" stopColor="#AE48FF" stopOpacity="0"></stop>
             </motion.linearGradient>
           ))}
-  
+
           <radialGradient
             id="paint0_radial_242_278"
             cx="0"
@@ -139,7 +141,6 @@ export const BackgroundBeams = React.memo(({
       </svg>
     </div>
   );
-  
 });
   
 BackgroundBeams.displayName = "BackgroundBeams";
