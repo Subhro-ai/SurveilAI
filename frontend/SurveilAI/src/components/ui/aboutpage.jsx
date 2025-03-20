@@ -92,12 +92,12 @@ const AboutPage = () => {
 
       {/* Main Content */}
       <motion.div
-        className="container items-center pt-32 relative z-10"
+        className="container items-center pl-20 pr-0 pt-32 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="ml-61 max-w-5xl mx-autor">
+        <div className="max-w-5xl mx-autor">
           {/* Header Section */}
           <motion.div className="mb-16 text-center" variants={itemVariants}>
             <motion.h1
