@@ -2,20 +2,3 @@
 @import "tw-animate-css";
 
 /* Apply a black background to the entire app */
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;  /* Ensures a full black background */
-   
-  }
-  
-  /* Ensure the root div takes the full height */
-  #root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: black; /* Ensures no white space */
-  }
-  

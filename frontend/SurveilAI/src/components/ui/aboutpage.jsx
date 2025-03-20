@@ -1,7 +1,16 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
+  // Apply global styles for background
+  useEffect(() => {
+    document.documentElement.style.backgroundColor = "black";
+    document.body.style.backgroundColor = "black";
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    document.body.style.overflowX = "hidden";
+  }, []);
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -9,9 +18,9 @@ const AboutPage = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
@@ -22,9 +31,9 @@ const AboutPage = () => {
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 12
-      }
-    }
+        damping: 12,
+      },
+    },
   };
 
   const techItemVariants = {
@@ -35,8 +44,8 @@ const AboutPage = () => {
       transition: {
         type: "spring",
         stiffness: 120,
-        damping: 10
-      }
+        damping: 10,
+      },
     },
     hover: {
       scale: 1.05,
@@ -44,44 +53,45 @@ const AboutPage = () => {
       transition: {
         type: "spring",
         stiffness: 300,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
-  // Parallax effect for background
+  // Parallax Effect for Background Elements
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const parallaxElements = document.querySelectorAll('.parallax');
+      const parallaxElements = document.querySelectorAll(".parallax");
       const x = (window.innerWidth - e.pageX * 2) / 100;
       const y = (window.innerHeight - e.pageY * 2) / 100;
-      
-      parallaxElements.forEach(el => {
+
+      parallaxElements.forEach((el) => {
         el.style.transform = `translateX(${x}px) translateY(${y}px)`;
       });
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   return (
-    <div className="min-h-screen bg-black w-full h-full text-gray-100 font-sans overflow-x-hidden relative">
-      {/* Background elements */}
-      <div className="fixed bg-black inset-0 w-full h-full opacity-10 pointer-events-none">
-
-
-        <div className="parallax absolute top-20 left-20 w-full h-full rounded-full bg-purple-700 blur-3xl"></div>
-        <div className="parallax absolute bottom-20 right-40 w-80 h-80 rounded-full bg-purple-500 blur-3xl"></div>
-        <div className="parallax absolute top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900 blur-3xl"></div>
+    <div className="w-screen h-screen bg-black text-gray-100 font-sans overflow-hidden relative">
+      {/* Background Elements */}
+      <div className="absolute inset-0 w-full h-full bg-black">
+        <div className="absolute inset-0 w-full h-full">
+          <div className="parallax absolute top-20 left-20 w-full h-full rounded-full bg-purple-700 blur-3xl"></div>
+          <div className="parallax absolute bottom-20 right-40 w-80 h-80 rounded-full bg-purple-500 blur-3xl"></div>
+          <div className="parallax absolute top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900 blur-3xl"></div>
+        </div>
       </div>
 
-      {/* Grid pattern */}
+      {/* Grid Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] -z-10 bg-[length:50px_50px]"></div>
 
-      <motion.div 
+      {/* Main Content */}
+      <motion.div
         className="container mx-auto px-4 py-24 pt-32 relative z-10"
         variants={containerVariants}
         initial="hidden"
@@ -89,11 +99,8 @@ const AboutPage = () => {
       >
         <div className="max-w-5xl mx-auto">
           {/* Header Section */}
-          <motion.div 
-            className="mb-16 text-center"
-            variants={itemVariants}
-          >
-            <motion.h1 
+          <motion.div className="mb-16 text-center" variants={itemVariants}>
+            <motion.h1
               className="text-6xl font-bold mb-4 text-purple-400 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-purple-300"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -101,7 +108,7 @@ const AboutPage = () => {
             >
               About SurveilAI
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -110,7 +117,7 @@ const AboutPage = () => {
               Advanced CCTV Surveillance with AI-Powered Real-Time Alerts
             </motion.p>
           </motion.div>
-          
+
           {/* Content Grid */}
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
