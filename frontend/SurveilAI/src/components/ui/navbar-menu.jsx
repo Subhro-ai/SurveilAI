@@ -76,7 +76,7 @@ export default function Navbar() {
           <HoveredLink to="/surveilai">Start monitoring !</HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="About">
-          <HoveredLink to="/contact">About </HoveredLink>
+          <HoveredLink to="/about">About </HoveredLink>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Feedback">
           <HoveredLink to="/feedback">Review</HoveredLink>
