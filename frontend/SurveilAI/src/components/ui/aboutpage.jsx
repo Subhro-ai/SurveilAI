@@ -77,27 +77,27 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-black text-gray-100 font-sans overflow-hidden relative">
+    <div className="relative w-screen h-screen overflow-y-auto items-center text-gray-100 font-sans">
       {/* Background Elements */}
-      <div className="absolute inset-0 w-full h-full bg-black">
-        <div className="absolute inset-0 w-full h-full">
-          <div className="parallax absolute top-20 left-20 w-full h-full rounded-full bg-purple-700 blur-3xl"></div>
-          <div className="parallax absolute bottom-20 right-40 w-80 h-80 rounded-full bg-purple-500 blur-3xl"></div>
-          <div className="parallax absolute top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900 blur-3xl"></div>
-        </div>
-      </div>
+      <div className="fixed inset-0 w-full h-full bg-black overflow-hidden">
+  <div className="absolute inset-0 w-full h-full">
+    <div className="parallax absolute top-20 left-20 w-full h-full rounded-full bg-purple-700 blur-3xl"></div>
+    <div className="parallax absolute bottom-20 right-40 w-80 h-80 rounded-full bg-purple-500 blur-3xl"></div>
+    <div className="parallax absolute top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900 blur-3xl"></div>
+  </div>
+</div>
 
       {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-grid-white/[0.02] -z-10 bg-[length:50px_50px]"></div>
+      <div className="absolute inset-0 bg-grid-white/[0.02] -z-10 bg-[length:50px_50px] items-center"></div>
 
       {/* Main Content */}
       <motion.div
-        className="container mx-auto px-4 py-24 pt-32 relative z-10"
+        className="container items-center pt-32 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="ml-61 max-w-5xl mx-autor">
           {/* Header Section */}
           <motion.div className="mb-16 text-center" variants={itemVariants}>
             <motion.h1
