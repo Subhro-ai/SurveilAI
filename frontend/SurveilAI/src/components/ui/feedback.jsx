@@ -73,7 +73,7 @@ const FeedbackForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black p-4">
+    <div className="min-h-screen pt-32 flex items-center justify-center bg-black p-4">
       <div className="w-full max-w-md bg-gray-900 rounded-lg shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl">
         <div className="p-6">
           <div className="flex items-center justify-center mb-6">
