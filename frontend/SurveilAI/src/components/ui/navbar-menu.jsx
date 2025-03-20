@@ -38,8 +38,12 @@ export default function Navbar() {
         animate={{ x: position.x, y: position.y }}
         transition={{ type: "spring", stiffness: 100, damping: 15 }}
         onMouseLeave={() => setActive(null)}
-        className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 hover:bg-gray-200 dark:hover:bg-gray-700"
-      >
+        className="relative rounded-full border border-white/40 
+             backdrop-blur-lg bg-white/20 dark:bg-white/10 
+             text-white shadow-lg shadow-white/20 
+             flex justify-center space-x-4 px-8 py-6"
+
+>
         <MenuItem setActive={setActive} active={active} item="Home">
           <HoveredLink to="/">Home Page</HoveredLink>
         </MenuItem>
