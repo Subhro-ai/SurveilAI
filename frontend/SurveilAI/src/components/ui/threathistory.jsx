@@ -5,6 +5,7 @@ const ThreatHistoryTable = () => {
   const [threats, setThreats] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     document.documentElement.style.backgroundColor = "black";
     document.body.style.backgroundColor = "black";
@@ -23,8 +24,10 @@ const ThreatHistoryTable = () => {
       try {
         const response = await axios.get("http://192.168.57.214:8000/history")
         setThreats(response.data.history);
-        // console.log(response.data)
+        console.log(response.data.history[1].image_link)
+        
         setLoading(false);
+
       } catch (error) {
         console.error("Error fetching prediction:", error);
       }
@@ -73,7 +76,7 @@ const ThreatHistoryTable = () => {
                     <span className="px-4 py-3 rounded bg-gray-700 text-gray-300 text-m">{threat.threat_type}</span>
                   </td>
                   <td className="px-8 py-8 border-b border-gray-700">
-                    <a href={threat.image_link} className="text-blue-400 hover:underline text-lg">View Image</a>
+                    <a href={`http://192.168.57.214:8000/${threat.image_link}`} className="text-blue-400 hover:underline text-lg">View Image</a>
                   </td>
                 </tr>
               ))}
