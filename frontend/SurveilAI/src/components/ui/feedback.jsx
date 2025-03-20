@@ -98,7 +98,7 @@ const FeedbackForm = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className={`transform transition-all duration-300 ${activeField === 'name' ? 'scale-102' : ''}`}>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1 text-left">Full Name</label>
                 <input
                   type="text"
                   id="name"
@@ -114,7 +114,7 @@ const FeedbackForm = () => {
               </div>
               
               <div className={`transform transition-all duration-300 ${activeField === 'phoneNumber' ? 'scale-102' : ''}`}>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-300 mb-1 text-left">Phone Number</label>
                 <input
                   type="tel"
                   id="phoneNumber"
@@ -128,9 +128,28 @@ const FeedbackForm = () => {
                   placeholder="+1 (123) 456-7890"
                 />
               </div>
-              
+              <div className={`transform transition-all duration-300 ${activeField === 'feedback' ? 'scale-102' : ''}`}>
+                <label htmlFor="feedback" className="block text-sm font-medium text-gray-300 mb-1 text-left">Your Feedback</label>
+                <textarea
+                  id="feedback"
+                  name="feedback"
+                  value={formData.feedback}
+                  onChange={handleChange}
+                  onFocus={() => handleFocus('feedback')}
+                  onBlur={handleBlur}
+                  required
+                  rows="4"
+                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-white resize-none transition-all duration-300"
+                  placeholder="Share your experience with our surveillance system..."
+                />
+                <div className="flex justify-end mt-1">
+                  <span className={`text-xs ${characterCount > 150 ? 'text-purple-400' : 'text-gray-500'}`}>
+                    {characterCount} characters
+                  </span>
+                </div>
+              </div>
               <div>
-                <label htmlFor="rating" className="block text-sm font-medium text-gray-300 mb-2">Rating</label>
+                <label htmlFor="rating" className="block text-sm font-medium text-gray-300 mb-2 ">Rating</label>
                 <div className="flex items-center justify-center space-x-1 mb-2">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
@@ -168,26 +187,7 @@ const FeedbackForm = () => {
                 )}
               </div>
               
-              <div className={`transform transition-all duration-300 ${activeField === 'feedback' ? 'scale-102' : ''}`}>
-                <label htmlFor="feedback" className="block text-sm font-medium text-gray-300 mb-1">Your Feedback</label>
-                <textarea
-                  id="feedback"
-                  name="feedback"
-                  value={formData.feedback}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus('feedback')}
-                  onBlur={handleBlur}
-                  required
-                  rows="4"
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-white resize-none transition-all duration-300"
-                  placeholder="Share your experience with our surveillance system..."
-                />
-                <div className="flex justify-end mt-1">
-                  <span className={`text-xs ${characterCount > 150 ? 'text-purple-400' : 'text-gray-500'}`}>
-                    {characterCount} characters
-                  </span>
-                </div>
-              </div>
+             
               
               <button
                 type="submit"
