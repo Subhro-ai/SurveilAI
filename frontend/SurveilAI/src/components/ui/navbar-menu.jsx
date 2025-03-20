@@ -52,6 +52,9 @@ export default function Navbar() {
         <MenuItem setActive={setActive} active={active} item="Feedback">
           <HoveredLink to="/feedback">Review</HoveredLink>
         </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="History">
+          <HoveredLink to="/threathistory">Check History</HoveredLink>
+        </MenuItem>
       </motion.nav>
     </div>
   );
