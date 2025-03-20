@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ExampleUsage />} />
           <Route path="/surveilai" element={<BackgroundBeams />} />
-          <Route path="/surveilai" element={<Camera />} />
+          
         </Routes>
       </BrowserRouter>
     </>

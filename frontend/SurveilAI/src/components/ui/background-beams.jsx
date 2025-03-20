@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Camera from "./camera";
 
 export const BackgroundBeams = React.memo(({
   className
@@ -65,6 +66,7 @@ export const BackgroundBeams = React.memo(({
         className
       )}
     >
+      <Camera/>
       <svg
         className="pointer-events-none absolute z-0 h-full w-full"
         width="100%"

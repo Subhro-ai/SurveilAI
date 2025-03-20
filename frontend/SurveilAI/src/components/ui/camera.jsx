@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+const URL="192.168.57.214:8000"
 const Camera = () => {
   const [prediction, setPrediction] = useState({
     label: "Waiting for predictions...",
@@ -8,7 +9,8 @@ const Camera = () => {
 
   useEffect(() => {
     // Establish WebSocket connection to FastAPI
-    const ws = new WebSocket("ws://127.0.0.1:8000/ws");
+    // const ws = new WebSocket("ws://192.168.57.214:8000/ws");
+    const ws = new WebSocket(`ws://${URL}/ws`);
 
     // Receive prediction data via WebSocket
     ws.onmessage = (event) => {
@@ -29,8 +31,8 @@ const Camera = () => {
       {/* 📹 Live Video Feed */}
       <div style={{ marginRight: 20 }}>
         <h2>📹 Live Video Feed</h2>
-        <img
-          src="http://127.0.0.1:8000/video_feed"
+        <img src={`http://${URL}/video_feed`} 
+
           alt="Live Feed"
           width="640"
           height="480"
